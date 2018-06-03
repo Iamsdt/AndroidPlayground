@@ -47,6 +47,4 @@ class MyViewModel:ViewModel(){
 
         return liveData
     }
-
-
 }
