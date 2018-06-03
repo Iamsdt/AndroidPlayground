@@ -4,18 +4,22 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: "androidx.navigation.safeargs"
+
 apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.iamsdt.androidplayground"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        renderscriptTargetApi 18
+        renderscriptSupportModeEnabled true
     }
     buildTypes {
         debug {
@@ -46,34 +50,57 @@ android {
     }
 }
 
+
 dependencies {
 
-    def lifecycle_version = "2.0.0-alpha1"
-    def room_version = "2.0.0-alpha1"
-    def paging_version = "2.0.0-alpha1"
+    def lifecycle_version = "1.1.1"
+    def room_version = "1.1.0"
+    def paging_version = "1.0.0"
+
+    def support_version = "27.1.1"
+
+    def nav_version = "1.0.0-alpha01"
+
+    def work_version = "1.0.0-alpha02"
+
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation "com.android.support:appcompat-v7:$support_version"
+    implementation "com.android.support:support-v4:$support_version"
+    implementation "com.android.support:design:$support_version"
+
+    //constrain layout
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+
+    //recycler view
+    implementation "com.android.support:recyclerview-v7:$support_version"
+
 
     //jet pack
     // ViewModel and LiveData
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    kapt  "android.arch.lifecycle:compiler:$lifecycle_version"
 
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    kapt "android.arch.persistence.room:compiler:$room_version"
 
     //paging
-    implementation "androidx.paging:paging-runtime:$paging_version"
+    implementation "android.arch.paging:runtime:$paging_version"
+
+    implementation "android.arch.navigation:navigation-fragment:$nav_version"
+    implementation "android.arch.navigation:navigation-ui:$nav_version"
+
+    implementation "android.arch.work:work-runtime:$work_version"
+
+    // optional - Firebase JobDispatcher support
+    implementation "android.arch.work:work-firebase:$work_version"
 
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.google.code.gson:gson:2.8.4'
 
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-
 }
