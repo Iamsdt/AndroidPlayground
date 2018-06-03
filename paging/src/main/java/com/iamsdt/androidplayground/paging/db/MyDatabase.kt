@@ -13,7 +13,7 @@ import com.iamsdt.androidplayground.paging.retrofit.PojoKt
 abstract class MyDatabase: RoomDatabase(){
 
 
-    abstract val bookDao: RetDao
+    abstract val retDao: RetDao
 
     companion object {
 

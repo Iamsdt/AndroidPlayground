@@ -19,6 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".paging.PageMainActivity" />
+        <activity android:name=".paging.PageDatabase" />
+        <activity android:name=".paging.PageDBNet" />
+        <activity android:name=".paging.PageNetwork" />
     </application>
 
 </manifest>
