@@ -1,4 +1,4 @@
-package com.iamsdt.androidplayground.paging
+package com.iamsdt.androidplayground.paging.viewmodel
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel

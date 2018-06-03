@@ -6,4 +6,7 @@
 
 
     <color name="pageColor">#5410ca</color>
+    <color name="pageColor1">#42a5f5</color>
+    <color name="pageColor2">#1de455</color>
+    <color name="pageColor3">#dca911</color>
 </resources>

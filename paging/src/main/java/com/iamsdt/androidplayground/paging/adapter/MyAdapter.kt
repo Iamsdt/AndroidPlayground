@@ -1,4 +1,4 @@
-package com.iamsdt.androidplayground.paging
+package com.iamsdt.androidplayground.paging.adapter
 
 import android.arch.paging.PagedListAdapter
 import android.support.v7.util.DiffUtil
