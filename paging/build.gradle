@@ -103,4 +103,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.4'
 
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+    //error handler
+    implementation 'com.github.RohitSurwase.UCE-Handler:uce_handler:1.3'
 }

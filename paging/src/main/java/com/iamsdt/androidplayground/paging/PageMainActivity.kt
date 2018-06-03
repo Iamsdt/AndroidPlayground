@@ -8,21 +8,22 @@ import android.os.Looper
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import com.google.gson.Gson
 import com.iamsdt.androidplayground.R
 import com.iamsdt.androidplayground.paging.db.MyDatabase
 import com.iamsdt.androidplayground.paging.db.RetDao
 import com.iamsdt.androidplayground.paging.retrofit.PojoKt
-import com.iamsdt.androidplayground.paging.retrofit.RetDemo
 import com.iamsdt.androidplayground.paging.retrofit.RetrofitInterface
 import kotlinx.android.synthetic.main.page_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.reflect.KClass
 
 class PageMainActivity:AppCompatActivity(){
 
-    lateinit var restInt: RetrofitInterface
     lateinit var retDao: RetDao
     lateinit var dialog: AlertDialog
 
@@ -30,9 +31,7 @@ class PageMainActivity:AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.page_main)
 
-        restInt = RetDemo().restInt!!
         retDao = MyDatabase.getDatabase(this).retDao
-
 
         dialog = AlertDialog.Builder(this)
                 .setTitle("Wait a while")
@@ -42,7 +41,12 @@ class PageMainActivity:AppCompatActivity(){
 
         database.setOnClickListener {
             dialog.show()
-            putData()
+            if (!isDataInsert(this)) putData()
+            else {
+                dialog.dismiss()
+                toNextActivity(PageDatabase::class)
+            }
+
         }
 
         network.setOnClickListener {
@@ -63,7 +67,13 @@ class PageMainActivity:AppCompatActivity(){
      */
     private fun putData() {
 
-        restInt.getData().enqueue(object : Callback<List<PojoKt>> {
+        val ret = Retrofit.Builder()
+                .baseUrl("https://jsonplaceholder.typicode.com/")
+                .addConverterFactory(GsonConverterFactory.create(Gson()))
+                .build()
+        val api = ret.create(RetrofitInterface::class.java)
+
+        api.getData().enqueue(object : Callback<List<PojoKt>> {
 
             override fun onResponse(call: Call<List<PojoKt>>?, response: Response<List<PojoKt>>?) {
                 if (response != null && response.isSuccessful){
@@ -73,8 +83,14 @@ class PageMainActivity:AppCompatActivity(){
                     val handler = Handler(threadLocal.looper)
                     handler.post({
                         val data = response.body()
+                        var long:Long = 0
                         data?.forEach {
-                            retDao.insert(it)
+                            long = retDao.insert(it)
+                            Log.i("Data put",it.title)
+                        }
+
+                        if (long > 0){
+                            setDataInsert(this@PageMainActivity)
                         }
 
                         Handler(Looper.getMainLooper()).post {

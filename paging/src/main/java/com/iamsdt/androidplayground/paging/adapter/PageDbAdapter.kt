@@ -15,7 +15,8 @@ import kotlinx.android.synthetic.main.recycler_view_item.view.*
 class PageDbAdapter: PagedListAdapter<PojoKt, PageDbAdapter.ItemView>(DIFF_CALLBACK){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemView {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_item,parent)
+        val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.recycler_view_item,parent,false)
         return ItemView(view = view)
     }
 
