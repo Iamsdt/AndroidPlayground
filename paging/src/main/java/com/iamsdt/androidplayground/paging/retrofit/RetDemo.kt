@@ -1,4 +1,4 @@
-package com.iamsdt.androidplayground.retrofit
+package com.iamsdt.androidplayground.paging.retrofit
 
 import com.google.gson.Gson
 import retrofit2.Retrofit

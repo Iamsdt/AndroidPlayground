@@ -1,4 +1,4 @@
-package com.iamsdt.androidplayground.retrofit
+package com.iamsdt.androidplayground.paging.retrofit
 
 import retrofit2.Call
 import retrofit2.http.GET

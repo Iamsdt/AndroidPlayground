@@ -1,9 +1,10 @@
 package com.iamsdt.androidplayground
 
-import androidx.paging.LivePagedListBuilder
-import androidx.paging.PagedList
-import com.iamsdt.androidplayground.retrofit.PojoKt
-import com.iamsdt.androidplayground.db.RetDao
+
+import android.arch.paging.LivePagedListBuilder
+import android.arch.paging.PagedList
+import com.iamsdt.androidplayground.paging.retrofit.PojoKt
+import com.iamsdt.androidplayground.paging.db.RetDao
 
 class DataAndNE(val retDao: RetDao) {
 
@@ -25,7 +26,7 @@ class DataAndNE(val retDao: RetDao) {
      */
 
     //their is Boundry Call back
-    inner class ItemBoundryCallBack:PagedList.BoundaryCallback<PojoKt>(){
+    inner class ItemBoundryCallBack: PagedList.BoundaryCallback<PojoKt>(){
 
         //take from constructor
 //        val retrofitInterface: RetrofitInterface,

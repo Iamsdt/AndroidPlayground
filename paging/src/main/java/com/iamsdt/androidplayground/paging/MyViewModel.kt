@@ -1,23 +1,24 @@
-package com.iamsdt.androidplayground
+package com.iamsdt.androidplayground.paging
 
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.ViewModel
+import android.arch.paging.LivePagedListBuilder
+import android.arch.paging.PagedList
 import android.os.Handler
 import android.os.HandlerThread
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.paging.LivePagedListBuilder
-import androidx.paging.PagedList
-import com.iamsdt.androidplayground.retrofit.PojoKt
-import com.iamsdt.androidplayground.db.RetDao
-import com.iamsdt.androidplayground.retrofit.RetrofitInterface
+
+import com.iamsdt.androidplayground.paging.retrofit.PojoKt
+import com.iamsdt.androidplayground.paging.db.RetDao
+import com.iamsdt.androidplayground.paging.retrofit.RetrofitInterface
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MyViewModel:ViewModel(){
+class MyViewModel: ViewModel(){
 
 
-    fun getData(retDao: RetDao, retrofitInterface: RetrofitInterface):LiveData<PagedList<PojoKt>> {
+    fun getData(retDao: RetDao, retrofitInterface: RetrofitInterface): LiveData<PagedList<PojoKt>> {
 
 
         val factory = retDao.getData()

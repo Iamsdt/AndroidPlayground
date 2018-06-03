@@ -1,6 +1,6 @@
-package com.iamsdt.androidplayground.retrofit
+package com.iamsdt.androidplayground.paging.retrofit
 
-import androidx.room.Entity
+import android.arch.persistence.room.Entity
 
 @Entity
 data class PojoKt(var albumId: Int = 0,

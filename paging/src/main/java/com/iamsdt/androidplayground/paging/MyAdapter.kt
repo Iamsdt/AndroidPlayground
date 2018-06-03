@@ -1,17 +1,18 @@
-package com.iamsdt.androidplayground
+package com.iamsdt.androidplayground.paging
 
+import android.arch.paging.PagedListAdapter
+import android.support.v7.util.DiffUtil
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.paging.PagedList
-import androidx.paging.PagedListAdapter
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
-import com.iamsdt.androidplayground.retrofit.PojoKt
+import com.iamsdt.androidplayground.R
+
+import com.iamsdt.androidplayground.paging.retrofit.PojoKt
 import kotlinx.android.synthetic.main.recycler_view_item.view.*
 
-class MyAdapter:PagedListAdapter<PojoKt,ItemView>(DIFF_CALLBACK){
+class MyAdapter: PagedListAdapter<PojoKt, ItemView>(DIFF_CALLBACK){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemView {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_item,parent)
@@ -38,7 +39,7 @@ class MyAdapter:PagedListAdapter<PojoKt,ItemView>(DIFF_CALLBACK){
     }
 }
 
-class ItemView(view:View):RecyclerView.ViewHolder(view){
+class ItemView(view:View): RecyclerView.ViewHolder(view){
     val id:TextView = view.textView
     val title:TextView = view.textView2
     val img:TextView = view.textView3
