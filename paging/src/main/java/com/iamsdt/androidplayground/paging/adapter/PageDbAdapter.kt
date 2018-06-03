@@ -12,7 +12,7 @@ import com.iamsdt.androidplayground.R
 import com.iamsdt.androidplayground.paging.retrofit.PojoKt
 import kotlinx.android.synthetic.main.recycler_view_item.view.*
 
-class MyAdapter: PagedListAdapter<PojoKt, ItemView>(DIFF_CALLBACK){
+class PageDbAdapter: PagedListAdapter<PojoKt, PageDbAdapter.ItemView>(DIFF_CALLBACK){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemView {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_item,parent)
@@ -37,16 +37,20 @@ class MyAdapter: PagedListAdapter<PojoKt, ItemView>(DIFF_CALLBACK){
                     oldConcert == newConcert
         }
     }
-}
 
-class ItemView(view:View): RecyclerView.ViewHolder(view){
-    val id:TextView = view.textView
-    val title:TextView = view.textView2
-    val img:TextView = view.textView3
+    inner class ItemView(view:View): RecyclerView.ViewHolder(view){
+        private val id:TextView = view.textView
+        private val title:TextView = view.textView2
+        private val img:TextView = view.textView3
 
-    fun bind(pojoKt: PojoKt){
-        id.text = pojoKt.id.toString()
-        title.text = pojoKt.title
-        img.text = pojoKt.thumbnailUrl
+        fun bind(pojoKt: PojoKt){
+            val pId = "ID: ${pojoKt.id}"
+            val pTitle = "Title: ${pojoKt.title}"
+            val pImg = "IMG: ${pojoKt.thumbnailUrl}"
+            id.text = pId
+            title.text = pTitle
+            img.text = pImg
+        }
     }
 }
+
