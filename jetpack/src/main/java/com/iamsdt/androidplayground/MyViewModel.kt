@@ -5,6 +5,7 @@ import android.os.HandlerThread
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.iamsdt.androidplayground.retrofit.PojoKt
 import com.iamsdt.androidplayground.retrofit.RetDao
@@ -17,6 +18,11 @@ class MyViewModel:ViewModel(){
 
 
     fun getData(retDao: RetDao,retrofitInterface: RetrofitInterface):LiveData<PagedList<PojoKt>> {
+
+
+        val factory = retDao.getData()
+        val liveData = LivePagedListBuilder(factory,20).build()
+
 
         val thread = HandlerThread("datainser")
         thread.start()
@@ -39,7 +45,7 @@ class MyViewModel:ViewModel(){
             })
         })
 
-        return retDao.getData()
+        return liveData
     }
 
 

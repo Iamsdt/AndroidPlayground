@@ -13,22 +13,14 @@ import kotlinx.android.synthetic.main.recycler_view_item.view.*
 
 class MyAdapter:PagedListAdapter<PojoKt,ItemView>(DIFF_CALLBACK){
 
-    var pageList:PagedList<PojoKt> ?= null
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemView {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_item,parent)
         return ItemView(view = view)
     }
 
     override fun onBindViewHolder(holder: ItemView, position: Int) {
-        if (pageList != null && pageList!!.isNotEmpty()){
-            val model = pageList!![position]!!
-            holder.bind(model)
-        }
-    }
-
-    fun updateList(pageList:PagedList<PojoKt>){
-        this.pageList = pageList
+        val pojo:PojoKt ?= getItem(position)
+        if (pojo != null) holder.bind(pojo)
     }
 
     companion object {

@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getData(retDao,retInterface).observe(this, Observer {
             if (it != null && it.isNotEmpty()){
-                myAdapter.updateList(it)
+                myAdapter.submitList(it)
             }
         })
     }
