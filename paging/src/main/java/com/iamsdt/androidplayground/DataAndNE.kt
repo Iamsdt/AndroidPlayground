@@ -3,7 +3,7 @@ package com.iamsdt.androidplayground
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.iamsdt.androidplayground.retrofit.PojoKt
-import com.iamsdt.androidplayground.retrofit.RetDao
+import com.iamsdt.androidplayground.db.RetDao
 
 class DataAndNE(val retDao: RetDao) {
 

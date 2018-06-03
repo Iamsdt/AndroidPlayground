@@ -1,9 +1,10 @@
-package com.iamsdt.androidplayground.retrofit
+package com.iamsdt.androidplayground.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.iamsdt.androidplayground.retrofit.PojoKt
 
 @Database(entities = [(PojoKt::class)],version = 1,
         //don't export database
@@ -11,18 +12,18 @@ import androidx.room.RoomDatabase
 abstract class MyDatabase: RoomDatabase(){
 
 
-    abstract val bookDao:RetDao
+    abstract val bookDao: RetDao
 
     companion object {
 
-        private var instance:MyDatabase ?= null
+        private var instance: MyDatabase?= null
         private val dbName = "Pojokt"
 
-        fun getDatabase(context: Context):MyDatabase{
+        fun getDatabase(context: Context): MyDatabase {
 
             if (instance == null) {
                 instance = Room.databaseBuilder(context,
-                        MyDatabase::class.java,dbName).build()
+                        MyDatabase::class.java, dbName).build()
             }
 
             return instance!!

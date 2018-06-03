@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.iamsdt.androidplayground.retrofit.PojoKt
-import com.iamsdt.androidplayground.retrofit.RetDao
+import com.iamsdt.androidplayground.db.RetDao
 import com.iamsdt.androidplayground.retrofit.RetrofitInterface
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,7 +17,7 @@ import retrofit2.Response
 class MyViewModel:ViewModel(){
 
 
-    fun getData(retDao: RetDao,retrofitInterface: RetrofitInterface):LiveData<PagedList<PojoKt>> {
+    fun getData(retDao: RetDao, retrofitInterface: RetrofitInterface):LiveData<PagedList<PojoKt>> {
 
 
         val factory = retDao.getData()
